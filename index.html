@@ -170,7 +170,7 @@
             position: relative;
             width: 100%;
             max-width: 850px;
-            animation: scrollUp 300s linear forwards;
+            animation: scrollUp 120s linear forwards;
             will-change: transform, opacity;
             contain: layout style paint;
         }
@@ -767,9 +767,9 @@
 
     <script>
         /**
-         * Anniversary Page - Fixed Animation Timing
+         * Anniversary Page - Faster Scrolling
          * Auto-playing music with continuous animation
-         * @version 5.2.0
+         * @version 5.3.0
          */
         
         (function() {
@@ -779,8 +779,8 @@
             // CONSTANTS & CONFIGURATION
             // ============================================
             const CONFIG = {
-                ANIMATION_DURATION: 300000, // 5 minutes (300 seconds) - longer duration for all content
-                ANIMATION_RESTART_DELAY: 15000, // 15 seconds pause before restart
+                ANIMATION_DURATION: 120000, // 2 minutes (120 seconds) - faster scrolling
+                ANIMATION_RESTART_DELAY: 10000, // 10 seconds pause before restart
                 INTERSECTION_THRESHOLD: 0.01,
                 INTERSECTION_ROOT_MARGIN: '50px 0px'
             };
