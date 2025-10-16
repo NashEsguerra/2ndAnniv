@@ -170,7 +170,7 @@
             position: relative;
             width: 100%;
             max-width: 850px;
-            animation: scrollUp 120s linear forwards;
+            animation: scrollUp 90s linear forwards;
             will-change: transform, opacity;
             contain: layout style paint;
         }
@@ -180,7 +180,7 @@
                 transform: translateY(100vh);
                 opacity: 0;
             }
-            1% {
+            2% {
                 opacity: 1;
             }
             95% {
@@ -237,11 +237,11 @@
             }
         }
 
-        /* Image Optimization - MODIFIED FOR FLEXIBLE SIZING */
+        /* Image Optimization - Enhanced */
         .message-card img {
             width: 100%;
             height: auto;
-            object-fit: contain; /* Changed from cover to contain */
+            object-fit: contain;
             border-radius: var(--radius-md);
             margin-bottom: var(--space-md);
             box-shadow: var(--shadow-lg);
@@ -253,6 +253,14 @@
                 rgba(255, 255, 255, 0.05) 0%, 
                 rgba(255, 255, 255, 0.1) 50%, 
                 rgba(255, 255, 255, 0.05) 100%);
+            opacity: 0;
+            animation: imageFadeIn 0.6s ease-out forwards;
+        }
+
+        @keyframes imageFadeIn {
+            to {
+                opacity: 1;
+            }
         }
 
         .message-card:hover img {
@@ -268,6 +276,12 @@
         @keyframes shimmer {
             0% { background-position: -200% 0; }
             100% { background-position: 200% 0; }
+        }
+
+        /* Error State for Images */
+        .message-card img.error {
+            opacity: 0.3;
+            filter: grayscale(100%);
         }
 
         /* ============================================
@@ -456,7 +470,7 @@
 
         @media (max-width: 480px) {
             .message-card img {
-                max-height: none; /* Removed max-height constraint */
+                max-height: none;
             }
         }
 
@@ -519,14 +533,105 @@
             white-space: nowrap;
             border-width: 0;
         }
+
+        /* Loading Indicator */
+        .loading-indicator {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: var(--z-modal);
+            font-size: var(--text-xl);
+            color: var(--color-text-primary);
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
+
+        /* Audio Controls */
+        .audio-controls {
+            position: fixed;
+            bottom: var(--space-lg);
+            right: var(--space-lg);
+            z-index: var(--z-controls);
+            background: var(--color-bg-card);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--color-border-card);
+            border-radius: var(--radius-md);
+            padding: var(--space-sm) var(--space-md);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            box-shadow: var(--shadow-md);
+        }
+
+        .audio-button {
+            background: none;
+            border: none;
+            color: var(--color-text-primary);
+            font-size: var(--text-lg);
+            cursor: pointer;
+            padding: var(--space-xs);
+            border-radius: var(--radius-sm);
+            transition: background-color var(--duration-base) var(--ease-out);
+        }
+
+        .audio-button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .audio-button:focus {
+            outline: 2px solid var(--color-text-primary);
+            outline-offset: 2px;
+        }
+
+        /* Error Message */
+        .error-message {
+            position: fixed;
+            top: var(--space-lg);
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 59, 48, 0.9);
+            color: white;
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--radius-md);
+            z-index: var(--z-modal);
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateX(-50%) translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Audio element with autoplay and loop -->
-    <audio id="anniversary-audio" loop preload="auto" aria-label="Background music">
+    <!-- Loading Indicator -->
+    <div class="loading-indicator" id="loading-indicator">Loading memories...</div>
+
+    <!-- Audio element -->
+    <audio id="anniversary-audio" preload="auto" aria-label="Background music">
         <source src="music/labyrinth.mp3" type="audio/mpeg">
         <p class="sr-only">Your browser does not support the audio element.</p>
     </audio>
+
+    <!-- Audio Controls -->
+    <div class="audio-controls" id="audio-controls" style="display: none;">
+        <button class="audio-button" id="play-pause-btn" aria-label="Play/Pause music">
+            <span id="play-pause-icon">▶️</span>
+        </button>
+        <span class="sr-only">Music Controls</span>
+    </div>
 
     <!-- Floating Hearts Background -->
     <div class="hearts" aria-hidden="true">
@@ -767,9 +872,9 @@
 
     <script>
         /**
-         * Anniversary Page - Faster Scrolling
-         * Auto-playing music with continuous animation
-         * @version 5.3.0
+         * Anniversary Page - Fully Enhanced Version
+         * Improved performance, error handling, and user experience
+         * @version 6.0.0
          */
         
         (function() {
@@ -779,10 +884,12 @@
             // CONSTANTS & CONFIGURATION
             // ============================================
             const CONFIG = {
-                ANIMATION_DURATION: 120000, // 2 minutes (120 seconds) - faster scrolling
-                ANIMATION_RESTART_DELAY: 10000, // 10 seconds pause before restart
+                ANIMATION_DURATION: 90000, // 1.5 minutes (90 seconds) - optimized speed
+                ANIMATION_RESTART_DELAY: 8000, // 8 seconds pause before restart
                 INTERSECTION_THRESHOLD: 0.01,
-                INTERSECTION_ROOT_MARGIN: '50px 0px'
+                INTERSECTION_ROOT_MARGIN: '50px 0px',
+                LOADING_TIMEOUT: 3000, // 3 seconds before hiding loading indicator
+                ERROR_DISPLAY_TIME: 5000 // 5 seconds to show error messages
             };
             
             // ============================================
@@ -792,7 +899,11 @@
                 contentWrapper: document.getElementById('content-wrapper'),
                 messageCards: document.querySelectorAll('.message-card'),
                 lazyImages: document.querySelectorAll('img[loading="lazy"]'),
-                audio: document.getElementById('anniversary-audio')
+                audio: document.getElementById('anniversary-audio'),
+                loadingIndicator: document.getElementById('loading-indicator'),
+                audioControls: document.getElementById('audio-controls'),
+                playPauseBtn: document.getElementById('play-pause-btn'),
+                playPauseIcon: document.getElementById('play-pause-icon')
             };
             
             // ============================================
@@ -800,7 +911,47 @@
             // ============================================
             const state = {
                 audioInitialized: false,
-                animationComplete: false
+                audioPlaying: false,
+                animationComplete: false,
+                imagesLoaded: 0,
+                totalImages: 0,
+                loadingComplete: false
+            };
+            
+            // ============================================
+            // UTILITY FUNCTIONS
+            // ============================================
+            
+            /**
+             * Show error message to user
+             */
+            const showError = (message) => {
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'error-message';
+                errorDiv.textContent = message;
+                document.body.appendChild(errorDiv);
+                
+                setTimeout(() => {
+                    errorDiv.remove();
+                }, CONFIG.ERROR_DISPLAY_TIME);
+            };
+            
+            /**
+             * Hide loading indicator
+             */
+            const hideLoadingIndicator = () => {
+                if (elements.loadingIndicator) {
+                    elements.loadingIndicator.style.display = 'none';
+                }
+            };
+            
+            /**
+             * Show audio controls
+             */
+            const showAudioControls = () => {
+                if (elements.audioControls) {
+                    elements.audioControls.style.display = 'flex';
+                }
             };
             
             // ============================================
@@ -808,38 +959,41 @@
             // ============================================
             
             /**
-             * Initialize audio with autoplay and loop
+             * Initialize audio with better error handling
              */
             const initializeAudio = () => {
-                // Set audio to loop
-                if (elements.audio) {
-                    elements.audio.loop = true;
-                    
-                    // Try to play audio when page loads
-                    const playAudio = () => {
-                        if (elements.audio) {
-                            elements.audio.play().catch(error => {
-                                console.warn('[v0] Audio autoplay failed:', error);
-                                
-                                // If autoplay fails, try to play on first user interaction
-                                document.addEventListener('click', enableAudioOnInteraction, { once: true });
-                                document.addEventListener('touchstart', enableAudioOnInteraction, { once: true });
-                            });
-                        }
-                    };
-                    
-                    // Try to play audio
-                    playAudio();
-                    
-                    // Set up audio event listeners
-                    elements.audio.addEventListener('play', () => {
-                        state.audioInitialized = true;
-                    });
-                    
-                    elements.audio.addEventListener('error', (e) => {
-                        console.error('[v0] Audio error:', e);
-                    });
+                if (!elements.audio) {
+                    console.warn('[v6] Audio element not found');
+                    return;
                 }
+                
+                // Set audio to loop
+                elements.audio.loop = true;
+                
+                // Set up audio event listeners
+                elements.audio.addEventListener('play', () => {
+                    state.audioInitialized = true;
+                    state.audioPlaying = true;
+                    updatePlayPauseButton();
+                });
+                
+                elements.audio.addEventListener('pause', () => {
+                    state.audioPlaying = false;
+                    updatePlayPauseButton();
+                });
+                
+                elements.audio.addEventListener('error', (e) => {
+                    console.error('[v6] Audio error:', e);
+                    showError('Unable to load background music');
+                });
+                
+                elements.audio.addEventListener('loadeddata', () => {
+                    showAudioControls();
+                });
+                
+                // Try to play audio on user interaction
+                document.addEventListener('click', enableAudioOnInteraction, { once: true });
+                document.addEventListener('touchstart', enableAudioOnInteraction, { once: true });
             };
             
             /**
@@ -848,9 +1002,89 @@
             const enableAudioOnInteraction = () => {
                 if (!state.audioInitialized && elements.audio) {
                     elements.audio.play().catch(error => {
-                        console.warn('[v0] Audio play failed after user interaction:', error);
+                        console.warn('[v6] Audio play failed after user interaction:', error);
+                        showError('Music playback requires user interaction');
                     });
                 }
+            };
+            
+            /**
+             * Toggle audio play/pause
+             */
+            const toggleAudio = () => {
+                if (!elements.audio) return;
+                
+                if (state.audioPlaying) {
+                    elements.audio.pause();
+                } else {
+                    elements.audio.play().catch(error => {
+                        console.warn('[v6] Audio play failed:', error);
+                        showError('Unable to play music');
+                    });
+                }
+            };
+            
+            /**
+             * Update play/pause button appearance
+             */
+            const updatePlayPauseButton = () => {
+                if (elements.playPauseIcon) {
+                    elements.playPauseIcon.textContent = state.audioPlaying ? '⏸️' : '▶️';
+                }
+            };
+            
+            // ============================================
+            // IMAGE MANAGEMENT
+            // ============================================
+            
+            /**
+             * Handle image loading errors
+             */
+            const handleImageError = (img) => {
+                img.classList.add('error');
+                console.warn(`[v6] Failed to load image: ${img.src}`);
+            };
+            
+            /**
+             * Handle image load success
+             */
+            const handleImageLoad = (img) => {
+                img.classList.add('loaded');
+                state.imagesLoaded++;
+                
+                // Check if all images are loaded
+                if (state.imagesLoaded >= state.totalImages && !state.loadingComplete) {
+                    state.loadingComplete = true;
+                    hideLoadingIndicator();
+                }
+            };
+            
+            /**
+             * Initialize image loading with error handling
+             */
+            const initializeImages = () => {
+                // Count total images
+                state.totalImages = document.querySelectorAll('.message-card img').length;
+                
+                // Add event listeners to all images
+                const allImages = document.querySelectorAll('.message-card img');
+                allImages.forEach(img => {
+                    img.addEventListener('error', () => handleImageError(img));
+                    img.addEventListener('load', () => handleImageLoad(img));
+                    
+                    // Check if image is already loaded
+                    if (img.complete) {
+                        handleImageLoad(img);
+                    }
+                });
+                
+                // Hide loading indicator after timeout even if not all images are loaded
+                setTimeout(() => {
+                    if (!state.loadingComplete) {
+                        hideLoadingIndicator();
+                        state.loadingComplete = true;
+                    }
+                }, CONFIG.LOADING_TIMEOUT);
             };
             
             // ============================================
@@ -861,9 +1095,8 @@
              * Restart animation smoothly after a delay
              */
             const restartAnimation = () => {
-                console.log('[v0] Animation complete, restarting after delay...');
+                console.log('[v6] Animation complete, restarting after delay...');
                 
-                // Set a timeout before restarting
                 setTimeout(() => {
                     if (elements.contentWrapper) {
                         // Reset animation
@@ -875,7 +1108,7 @@
                         // Restart animation
                         elements.contentWrapper.style.animation = `scrollUp ${CONFIG.ANIMATION_DURATION}ms linear forwards`;
                         
-                        console.log('[v0] Animation restarted');
+                        console.log('[v6] Animation restarted');
                     }
                 }, CONFIG.ANIMATION_RESTART_DELAY);
             };
@@ -889,7 +1122,7 @@
              */
             const initializeIntersectionObserver = () => {
                 if (!('IntersectionObserver' in window)) {
-                    console.warn('[v0] IntersectionObserver not supported');
+                    console.warn('[v6] IntersectionObserver not supported');
                     return;
                 }
                 
@@ -919,15 +1152,27 @@
              * Setup all event listeners
              */
             const setupEventListeners = () => {
-                // Animation restart - listen for animation end
+                // Animation restart
                 if (elements.contentWrapper) {
                     elements.contentWrapper.addEventListener('animationend', (event) => {
-                        // Only restart if it's the main scrollUp animation
                         if (event.animationName === 'scrollUp') {
                             restartAnimation();
                         }
                     });
                 }
+                
+                // Audio controls
+                if (elements.playPauseBtn) {
+                    elements.playPauseBtn.addEventListener('click', toggleAudio);
+                }
+                
+                // Keyboard shortcuts
+                document.addEventListener('keydown', (e) => {
+                    if (e.code === 'Space' && e.target === document.body) {
+                        e.preventDefault();
+                        toggleAudio();
+                    }
+                });
             };
             
             // ============================================
@@ -938,24 +1183,22 @@
              * Initialize the application
              */
             const init = () => {
-                console.log('[v0] Initializing Anniversary Page...');
+                console.log('[v6] Initializing Anniversary Page...');
                 
                 // Check if required elements exist
                 if (!elements.contentWrapper) {
-                    console.error('[v0] Content wrapper not found');
+                    console.error('[v6] Content wrapper not found');
+                    showError('Page initialization failed');
                     return;
                 }
                 
-                // Setup event listeners
+                // Initialize components
                 setupEventListeners();
-                
-                // Initialize audio
                 initializeAudio();
-                
-                // Initialize lazy loading
+                initializeImages();
                 initializeIntersectionObserver();
                 
-                console.log('[v0] Anniversary Page initialized successfully');
+                console.log('[v6] Anniversary Page initialized successfully');
             };
             
             // Run initialization when DOM is ready
