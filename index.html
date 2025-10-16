@@ -14,18 +14,13 @@
     
     <!-- Security and Compatibility -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; script-src 'self' 'unsafe-inline';">
     
     <title>Happy 2nd Anniversary 💖</title>
     
     <!-- Optimized Font Loading -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- Preload Critical Assets -->
-    <link rel="preload" href="pictures/1.jpg" as="image" type="image/jpeg">
-    <link rel="preload" href="taylor swift - labyrinth (slowed & reverb).mp3" as="audio" type="audio/mpeg">
     
     <style>
         /* ============================================
@@ -528,7 +523,7 @@
 </head>
 <body>
     <!-- Audio element with autoplay and loop -->
-    <audio id="anniversary-audio" autoplay loop preload="auto" aria-label="Background music">
+    <audio id="anniversary-audio" loop preload="auto" aria-label="Background music">
         <source src="music/labyrinth.mp3" type="audio/mpeg">
         <p class="sr-only">Your browser does not support the audio element.</p>
     </audio>
@@ -774,7 +769,7 @@
         /**
          * Anniversary Page - Fixed Animation Timing
          * Auto-playing music with continuous animation
-         * @version 5.1.0
+         * @version 5.2.0
          */
         
         (function() {
@@ -817,37 +812,41 @@
              */
             const initializeAudio = () => {
                 // Set audio to loop
-                elements.audio.loop = true;
-                
-                // Try to play audio when page loads
-                const playAudio = () => {
-                    elements.audio.play().catch(error => {
-                        console.warn('[v0] Audio autoplay failed:', error);
-                        
-                        // If autoplay fails, try to play on first user interaction
-                        document.addEventListener('click', enableAudioOnInteraction, { once: true });
-                        document.addEventListener('touchstart', enableAudioOnInteraction, { once: true });
+                if (elements.audio) {
+                    elements.audio.loop = true;
+                    
+                    // Try to play audio when page loads
+                    const playAudio = () => {
+                        if (elements.audio) {
+                            elements.audio.play().catch(error => {
+                                console.warn('[v0] Audio autoplay failed:', error);
+                                
+                                // If autoplay fails, try to play on first user interaction
+                                document.addEventListener('click', enableAudioOnInteraction, { once: true });
+                                document.addEventListener('touchstart', enableAudioOnInteraction, { once: true });
+                            });
+                        }
+                    };
+                    
+                    // Try to play audio
+                    playAudio();
+                    
+                    // Set up audio event listeners
+                    elements.audio.addEventListener('play', () => {
+                        state.audioInitialized = true;
                     });
-                };
-                
-                // Try to play audio
-                playAudio();
-                
-                // Set up audio event listeners
-                elements.audio.addEventListener('play', () => {
-                    state.audioInitialized = true;
-                });
-                
-                elements.audio.addEventListener('error', (e) => {
-                    console.error('[v0] Audio error:', e);
-                });
+                    
+                    elements.audio.addEventListener('error', (e) => {
+                        console.error('[v0] Audio error:', e);
+                    });
+                }
             };
             
             /**
              * Enable audio playback after user interaction
              */
             const enableAudioOnInteraction = () => {
-                if (!state.audioInitialized) {
+                if (!state.audioInitialized && elements.audio) {
                     elements.audio.play().catch(error => {
                         console.warn('[v0] Audio play failed after user interaction:', error);
                     });
@@ -866,16 +865,18 @@
                 
                 // Set a timeout before restarting
                 setTimeout(() => {
-                    // Reset animation
-                    elements.contentWrapper.style.animation = 'none';
-                    
-                    // Force reflow
-                    void elements.contentWrapper.offsetWidth;
-                    
-                    // Restart animation
-                    elements.contentWrapper.style.animation = `scrollUp ${CONFIG.ANIMATION_DURATION}ms linear forwards`;
-                    
-                    console.log('[v0] Animation restarted');
+                    if (elements.contentWrapper) {
+                        // Reset animation
+                        elements.contentWrapper.style.animation = 'none';
+                        
+                        // Force reflow
+                        void elements.contentWrapper.offsetWidth;
+                        
+                        // Restart animation
+                        elements.contentWrapper.style.animation = `scrollUp ${CONFIG.ANIMATION_DURATION}ms linear forwards`;
+                        
+                        console.log('[v0] Animation restarted');
+                    }
                 }, CONFIG.ANIMATION_RESTART_DELAY);
             };
             
@@ -905,7 +906,9 @@
                     threshold: CONFIG.INTERSECTION_THRESHOLD
                 });
                 
-                elements.lazyImages.forEach(img => imageObserver.observe(img));
+                if (elements.lazyImages) {
+                    elements.lazyImages.forEach(img => imageObserver.observe(img));
+                }
             };
             
             // ============================================
@@ -917,12 +920,14 @@
              */
             const setupEventListeners = () => {
                 // Animation restart - listen for animation end
-                elements.contentWrapper.addEventListener('animationend', (event) => {
-                    // Only restart if it's the main scrollUp animation
-                    if (event.animationName === 'scrollUp') {
-                        restartAnimation();
-                    }
-                });
+                if (elements.contentWrapper) {
+                    elements.contentWrapper.addEventListener('animationend', (event) => {
+                        // Only restart if it's the main scrollUp animation
+                        if (event.animationName === 'scrollUp') {
+                            restartAnimation();
+                        }
+                    });
+                }
             };
             
             // ============================================
@@ -934,6 +939,12 @@
              */
             const init = () => {
                 console.log('[v0] Initializing Anniversary Page...');
+                
+                // Check if required elements exist
+                if (!elements.contentWrapper) {
+                    console.error('[v0] Content wrapper not found');
+                    return;
+                }
                 
                 // Setup event listeners
                 setupEventListeners();
