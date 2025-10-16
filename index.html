@@ -175,7 +175,7 @@
             position: relative;
             width: 100%;
             max-width: 850px;
-            animation: scrollUp 120s linear forwards;
+            animation: scrollUp 300s linear forwards;
             will-change: transform, opacity;
             contain: layout style paint;
         }
@@ -185,10 +185,10 @@
                 transform: translateY(100vh);
                 opacity: 0;
             }
-            2% {
+            1% {
                 opacity: 1;
             }
-            98% {
+            95% {
                 opacity: 1;
             }
             100% {
@@ -772,9 +772,9 @@
 
     <script>
         /**
-         * Anniversary Page - Simplified JavaScript Implementation
+         * Anniversary Page - Fixed Animation Timing
          * Auto-playing music with continuous animation
-         * @version 5.0.0
+         * @version 5.1.0
          */
         
         (function() {
@@ -784,8 +784,8 @@
             // CONSTANTS & CONFIGURATION
             // ============================================
             const CONFIG = {
-                ANIMATION_DURATION: 120000, // 120 seconds (2 minutes) - longer duration for all content
-                ANIMATION_RESTART_DELAY: 5000, // 5 seconds pause before restart
+                ANIMATION_DURATION: 300000, // 5 minutes (300 seconds) - longer duration for all content
+                ANIMATION_RESTART_DELAY: 15000, // 15 seconds pause before restart
                 INTERSECTION_THRESHOLD: 0.01,
                 INTERSECTION_ROOT_MARGIN: '50px 0px'
             };
@@ -804,7 +804,8 @@
             // STATE MANAGEMENT
             // ============================================
             const state = {
-                audioInitialized: false
+                audioInitialized: false,
+                animationComplete: false
             };
             
             // ============================================
@@ -858,16 +859,23 @@
             // ============================================
             
             /**
-             * Restart animation smoothly
+             * Restart animation smoothly after a delay
              */
             const restartAnimation = () => {
+                console.log('[v0] Animation complete, restarting after delay...');
+                
+                // Set a timeout before restarting
                 setTimeout(() => {
+                    // Reset animation
                     elements.contentWrapper.style.animation = 'none';
-                    requestAnimationFrame(() => {
-                        requestAnimationFrame(() => {
-                            elements.contentWrapper.style.animation = `scrollUp ${CONFIG.ANIMATION_DURATION}ms linear forwards`;
-                        });
-                    });
+                    
+                    // Force reflow
+                    void elements.contentWrapper.offsetWidth;
+                    
+                    // Restart animation
+                    elements.contentWrapper.style.animation = `scrollUp ${CONFIG.ANIMATION_DURATION}ms linear forwards`;
+                    
+                    console.log('[v0] Animation restarted');
                 }, CONFIG.ANIMATION_RESTART_DELAY);
             };
             
@@ -908,8 +916,13 @@
              * Setup all event listeners
              */
             const setupEventListeners = () => {
-                // Animation restart
-                elements.contentWrapper.addEventListener('animationend', restartAnimation);
+                // Animation restart - listen for animation end
+                elements.contentWrapper.addEventListener('animationend', (event) => {
+                    // Only restart if it's the main scrollUp animation
+                    if (event.animationName === 'scrollUp') {
+                        restartAnimation();
+                    }
+                });
             };
             
             // ============================================
