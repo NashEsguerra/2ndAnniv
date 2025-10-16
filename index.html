@@ -242,13 +242,11 @@
             }
         }
 
-        /* Image Optimization */
+        /* Image Optimization - MODIFIED FOR FLEXIBLE SIZING */
         .message-card img {
             width: 100%;
             height: auto;
-            max-height: 600px;
-            object-fit: cover;
-            object-position: center;
+            object-fit: contain; /* Changed from cover to contain */
             border-radius: var(--radius-md);
             margin-bottom: var(--space-md);
             box-shadow: var(--shadow-lg);
@@ -463,7 +461,7 @@
 
         @media (max-width: 480px) {
             .message-card img {
-                max-height: 400px;
+                max-height: none; /* Removed max-height constraint */
             }
         }
 
@@ -554,320 +552,214 @@
                 <p>Celebrating two beautiful years of love, laughter, and endless memories together.</p>
             </article>
 
-            <!-- Memory Cards (1-56) -->
+            <!-- Memory Cards (1-56) - CAPTIONS REMOVED -->
             <article class="message-card">
                 <img src="pictures/2.jpg" alt="Our first cherished moment together" loading="eager">
-                <h2>Before the Plot Twist</h2>
-                <p>Back then, I swear I was just irritated. No spark, no butterflies, just pure “asaran.” Who knew this scene would end up being part of something bigger?</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/29.jpg" alt="A special memory" loading="lazy">
-                <h2>Awkward to Comfortable</h2>
-                <p>Somewhere between the jokes and random talks, we stopped being enemies and started being friends. No plans, no labels, just good vibes that somehow turned into real connection.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/6.jpg" alt="Your beautiful smile" loading="lazy">
-                <h2>Tropa Era</h2>
-                <p>We went from “inis” to “kulitan.” No pressure, no drama — just two people who somehow clicked and became each other’s constant.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/17.jpg" alt="Joyful moments together" loading="lazy">
-                <h2>Tropa Era – Part 2</h2>
-                <p>Nothing deep, no hidden meaning — just the usual kulitan, asaran, and late replies that somehow became part of our routine. Still just friends, and that’s what made it fun.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/7.jpg" alt="Walking hand in hand" loading="lazy">
-                <h2>Tropa Era – Part 2.5</h2>
-                <p>No labels, no drama, no changes — just two friends who somehow ended up talking every day without even noticing.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/37.jpg" alt="Intimate moments" loading="lazy">
-                <h2>Every Moment Counts</h2>
-                <p>From quiet dinners to grand adventures, every moment spent with you is a treasure. You make ordinary days extraordinary.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/1.jpg" alt="Stargazing together" loading="lazy">
-                <h2>Under the Same Stars</h2>
-                <p>Looking up at the stars with you reminds me that we're part of something bigger. Our love story is written in the constellations.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/13.jpg" alt="Dancing together" loading="lazy">
-                <h2>Dancing Through Life</h2>
-                <p>Life with you is like a beautiful dance. Sometimes slow and tender, sometimes wild and free, but always perfectly in sync.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/35.jpg" alt="Together facing the world" loading="lazy">
-                <h2>Our Forever Journey</h2>
-                <p>Let's continue creating beautiful memories, supporting each other through life's challenges, and choosing each other every single day.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/51.jpg" alt="Watching the sunrise" loading="lazy">
-                <h2>New Beginnings Every Day</h2>
-                <p>Every sunrise with you feels like a fresh start, a new opportunity to love you more deeply and dream bigger together.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/24.jpg" alt="Cozy moments" loading="lazy">
-                <h2>The Comfort of Your Presence</h2>
-                <p>The quiet moments we share are just as precious as the grand gestures. Your presence is my peace.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/28.jpg" alt="Adventures together" loading="lazy">
-                <h2>Adventures Await</h2>
-                <p>With you, every adventure is more exciting, every challenge more conquerable. Thank you for being my adventure buddy.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/25.jpg" alt="Cooking together" loading="lazy">
-                <h2>Cooking Up Love</h2>
-                <p>Our kitchen adventures are some of my favorite memories. Every meal with you is special because we're together.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/27.jpg" alt="Beautiful sunset" loading="lazy">
-                <h2>Sunset Serenity</h2>
-                <p>Watching sunsets with you reminds me that endings can be beautiful too. Each day closes with gratitude for having you.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/14.jpg" alt="Morning coffee" loading="lazy">
-                <h2>Morning Coffee Rituals</h2>
-                <p>Our morning coffee talks are the perfect start to any day. Your sleepy smile makes even Monday mornings feel like a blessing.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/50.jpg" alt="Celebrating milestones" loading="lazy">
-                <h2>Celebrating You</h2>
-                <p>Every celebration is brighter with you. Your happiness is my happiness, and your achievements are mine to celebrate too.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/31.jpg" alt="Dancing in the rain" loading="lazy">
-                <h2>Dancing in the Rain</h2>
-                <p>Remember when we got caught in that downpour? Instead of running for cover, we danced. That's what I love about us.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/52.jpg" alt="Movie night" loading="lazy">
-                <h2>Movie Night Magic</h2>
-                <p>Our movie nights are legendary. Being curled up next to you is all that matters, whether we finish the movie or not.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/15.jpg" alt="Road trip" loading="lazy">
-                <h2>Road Trip Adventures</h2>
-                <p>The best journeys are the ones we take together. From singing off-key to getting lost, every road trip is an adventure.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/34.jpg" alt="Winter wonderland" loading="lazy">
-                <h2>Winter Wonderland</h2>
-                <p>Building snowmen, having snowball fights, and warming up with hot chocolate—winter is magical with you.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/53.jpg" alt="Spring blossoms" loading="lazy">
-                <h2>Spring Blossoms</h2>
-                <p>Like flowers blooming in spring, our love continues to grow and flourish. Each season brings new beauty to our relationship.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/54.jpg" alt="Summer picnic" loading="lazy">
-                <h2>Summer Picnics</h2>
-                <p>Lazy summer afternoons, picnic blankets, and your hand in mine. These simple moments are the ones I treasure most.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/23.jpg" alt="Autumn leaves" loading="lazy">
-                <h2>Autumn Memories</h2>
-                <p>Walking through fallen leaves, pumpkin spice everything, and cozy sweaters. Autumn with you is a season of warmth and change.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/22.jpg" alt="Our first date" loading="lazy">
-                <h2>Our First Date</h2>
-                <p>I still remember the butterflies, the nervous excitement, and the moment I knew you were special. That first date was the beginning of everything.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/43.jpg" alt="The first kiss" loading="lazy">
-                <h2>The First Kiss</h2>
-                <p>Time stood still when our lips first met. That kiss sealed our fate and started a love story I never want to end.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/44.jpg" alt="Holding hands" loading="lazy">
-                <h2>Your Hand in Mine</h2>
-                <p>The simple act of holding your hand brings me comfort, security, and joy. It's a reminder that we're in this together, always.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/11.jpg" alt="Loving gazes" loading="lazy">
-                <h2>The Way You Look at Me</h2>
-                <p>The way you look at me makes me feel seen, loved, and cherished. Your eyes tell me I'm home, I'm loved, I'm yours.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/12.jpg" alt="Thoughtful surprises" loading="lazy">
-                <h2>Thoughtful Surprises</h2>
-                <p>You have a gift for making me feel special. Whether it's a surprise date or just remembering my favorite things, you show love in countless ways.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/40.jpg" alt="Supporting each other" loading="lazy">
-                <h2>My Biggest Supporter</h2>
-                <p>You believe in me even when I don't believe in myself. Your encouragement makes me want to be the best version of myself.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/4.jpg" alt="Lazy Sunday morning" loading="lazy">
-                <h2>Lazy Sunday Mornings</h2>
-                <p>There's nothing better than lazy Sunday mornings with you. No rush, no plans, just us, laughing about nothing and everything.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/41.jpg" alt="Concert memories" loading="lazy">
-                <h2>Concert Memories</h2>
-                <p>Dancing to our favorite songs, singing at the top of our lungs. Music sounds better when I'm experiencing it with you.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/42.jpg" alt="Art and culture" loading="lazy">
-                <h2>Art and Culture</h2>
-                <p>Exploring museums, galleries, and cultural events together. You make me see the world through a more beautiful lens.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/46.jpg" alt="Game night" loading="lazy">
-                <h2>Game Night Champions</h2>
-                <p>Whether we're competing fiercely or teaming up, game nights with you are always fun. You're my favorite opponent and best teammate.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/33.jpg" alt="Our growing family" loading="lazy">
-                <h2>Our Little Family</h2>
-                <p>Building a life together, creating our own little family. Every milestone, every moment of growth—we're doing it together.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/32.jpg" alt="Creating our home" loading="lazy">
-                <h2>Making a Home</h2>
-                <p>Turning a house into a home, one memory at a time. Every piece tells our story and reflects the life we're building.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/26.jpg" alt="Celebrating love" loading="lazy">
-                <h2>Celebrating Love</h2>
-                <p>Attending weddings together, celebrating other people's love while cherishing our own. Each celebration reminds me how lucky I am.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/18.jpg" alt="Dancing at parties" loading="lazy">
-                <h2>Party Partners</h2>
-                <p>You're my favorite person to party with. Whether we're dancing the night away or people-watching, every event is better with you.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/3.jpg" alt="Comfortable silence" loading="lazy">
-                <h2>Comfortable Silence</h2>
-                <p>We don't always need words. Sometimes the most meaningful moments are the quiet ones, where we simply exist together in perfect harmony.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/56.jpg" alt="Working out together" loading="lazy">
-                <h2>Fitness Partners</h2>
-                <p>Motivating each other to be healthier, stronger, better. Working out together is about supporting each other's goals.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/8.jpg" alt="Trying new foods" loading="lazy">
-                <h2>Culinary Adventures</h2>
-                <p>Trying new restaurants, exploring different cuisines, and discovering new favorite dishes. Every meal is an adventure with you.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/20.jpg" alt="Farmer's market" loading="lazy">
-                <h2>Market Mornings</h2>
-                <p>Saturday mornings at the farmer's market, picking fresh produce, and planning meals together. These simple routines make life beautiful.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/10.jpg" alt="Baking together" loading="lazy">
-                <h2>Baking Memories</h2>
-                <p>Flour fights, taste testing, and the sweet smell of fresh baked goods. Baking with you is messy, fun, and absolutely perfect.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/5.jpg" alt="Bookstore browsing" loading="lazy">
-                <h2>Bookstore Browsing</h2>
-                <p>Getting lost in bookstores, recommending reads to each other, and building our home library. You understand my love for books.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/16.jpg" alt="Coffee shop dates" loading="lazy">
-                <h2>Coffee Shop Dates</h2>
-                <p>Our favorite coffee shop has become our spot. It's where we talk for hours and enjoy the simple pleasure of good coffee and great company.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/19.jpg" alt="Starlit conversations" loading="lazy">
-                <h2>Starlit Conversations</h2>
-                <p>Late night talks under the stars, sharing dreams, fears, and everything in between. These conversations have deepened our connection.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/9.jpg" alt="Amusement park" loading="lazy">
-                <h2>Thrill Seekers</h2>
-                <p>Riding roller coasters, winning carnival games, and acting like kids again. You bring out my playful side and remind me to enjoy life's thrills.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/38.jpg" alt="Zoo adventures" loading="lazy">
-                <h2>Zoo Adventures</h2>
-                <p>Exploring the zoo, learning about animals, and making silly jokes. Every outing with you is an opportunity to learn, laugh, and love.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/45.jpg" alt="Aquarium visit" loading="lazy">
-                <h2>Underwater Wonders</h2>
-                <p>The aquarium's blue glow reflecting in your eyes, watching sea creatures glide by. These peaceful moments remind me of the depth of our love.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/39.jpg" alt="Garden strolls" loading="lazy">
-                <h2>Garden Strolls</h2>
-                <p>Walking through botanical gardens, surrounded by beauty and nature. Like the flowers around us, our love continues to bloom and grow.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/49.jpg" alt="Lakeside serenity" loading="lazy">
-                <h2>Lakeside Serenity</h2>
-                <p>Sitting by the lake, skipping stones, and watching the water ripple. These tranquil moments with you are my favorite form of meditation.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/47.jpg" alt="Camping under stars" loading="lazy">
-                <h2>Camping Under Stars</h2>
-                <p>Pitching tents, roasting marshmallows, and sleeping under the stars. Camping brings us closer to nature and each other.</p>
             </article>
 
             <article class="message-card">
                 <img src="pictures/36.jpg" alt="Bonfire nights" loading="lazy">
-                <h2>Bonfire Nights</h2>
-                <p>Gathered around the fire, sharing stories and staying warm. The glow of the flames can't compare to the warmth I feel with you.</p>
             </article>
-
-            
 
             <!-- Final Message -->
             <article class="message-card final-card">
