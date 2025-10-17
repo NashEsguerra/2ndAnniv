@@ -289,18 +289,16 @@
                 right: 5px;
                 padding: 5px 10px;
             }
-
-        }
         /* Audio prompt */
         .audio-prompt{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:rgba(0,0,0,.6);color:#fff;padding:.6rem .9rem;border-radius:999px;backdrop-filter:saturate(120%) blur(6px);box-shadow:0 6px 20px rgba(0,0,0,.25);font-size:.95rem;letter-spacing:.2px;display:none;align-items:center;gap:.5rem;z-index:2000}
         .audio-prompt.active{display:flex}
         .audio-prompt:focus{outline:2px solid #fff3;outline-offset:2px}
 
+        }
 
     </style>
 </head>
 <body>
-
     <!-- Floating hearts -->
     <div class="hearts-container" id="heartsContainer" aria-hidden="true"></div>
     <!-- Autoplay prompt (appears only if needed) -->
@@ -308,7 +306,7 @@
 
 
     <!-- Background music -->
-    <audio id="bgMusic" preload="auto" loop playsinline autoplay muted>
+    <audio id="bgMusic" preload="auto" loop playsinline>
         <source src="music/labyrinth.mp3" type="audio/mpeg">
     </audio>
 
@@ -427,46 +425,29 @@
             createHeart();
         }
 
-        // Start music with 13-second skip (best-effort autoplay)
+        // Start music with 10-second skip
         function startMusic() {
-            const ensureStartTime = () => { try { bgMusic.currentTime = MUSIC_START_TIME; } catch(e){} };
-            // Try muted autoplay to satisfy browser policies
-            bgMusic.muted = true;
-            try { bgMusic.volume = 0; } catch(e){}
-            ensureStartTime();
-
-            const tryPlay = () => bgMusic.play().then(() => {
-                // Attempt to unmute and fade in shortly after playback begins
-                setTimeout(() => {
-                    ensureStartTime();
-                    try { bgMusic.muted = false; } catch(e){}
-                    try {
-                        let v = 0; const target = 0.9; const step = 0.1;
-                        const iv = setInterval(() => {
-                            v = Math.min(target, v + step);
-                            try { bgMusic.volume = v; } catch(e){}
-                            if (v >= target) clearInterval(iv);
-                        }, 150);
-                    } catch(e){}
-                }, 300);
-            }).catch(() => {
-                // As a fallback (for strict browsers like iOS Safari), show prompt
+            bgMusic.currentTime = MUSIC_START_TIME;
+            bgMusic.play().catch(() => {
+                // Autoplay blocked: show prompt and start on first interaction
                 const prompt = document.getElementById('audioPrompt');
-                if (prompt) prompt.classList.add('active');
+                if (prompt) {
+                    prompt.classList.add('active');
+                }
                 const startOnInteract = () => {
-                    ensureStartTime();
-                    try { bgMusic.muted = false; } catch(e){}
-                    bgMusic.play().finally(() => { if (prompt) prompt.classList.remove('active'); });
+                    bgMusic.currentTime = MUSIC_START_TIME;
+                    bgMusic.play().finally(() => {
+                        if (prompt) prompt.classList.remove('active');
+                    });
                     window.removeEventListener('pointerdown', startOnInteract, true);
                     window.removeEventListener('keydown', onKey, true);
                 };
-                const onKey = (e) => { if (e.key === 'Enter' || e.key === ' ') startOnInteract(); };
+                const onKey = (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') startOnInteract();
+                };
                 window.addEventListener('pointerdown', startOnInteract, { once: true, capture: true });
                 window.addEventListener('keydown', onKey, { capture: true });
             });
-
-            if (bgMusic.readyState >= 1) tryPlay();
-            else bgMusic.addEventListener('loadedmetadata', tryPlay, { once: true });
         }
 
         // Show next photo
