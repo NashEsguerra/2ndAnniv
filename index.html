@@ -2,950 +2,510 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="Celebrating two beautiful years together - A digital love letter">
-    <meta name="theme-color" content="#667eea">
-    <meta name="color-scheme" content="light dark">
-    
-    <!-- SEO and Social Media Meta Tags -->
-    <meta property="og:title" content="Happy 2nd Anniversary 💖">
-    <meta property="og:description" content="Celebrating two beautiful years together">
-    <meta property="og:type" content="website">
-    
-    <!-- Security and Compatibility -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; script-src 'self' 'unsafe-inline';">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy 2nd Anniversary 💖</title>
-    
-    <!-- Optimized Font Loading -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- Preload Critical Assets -->
-    <link rel="preload" href="pictures/1.jpg" as="image" type="image/jpeg">
-    <!-- Fixed: Corrected audio file path to match the one used in the audio element -->
-    <link rel="preload" href="music/labyrinth.mp3" as="audio" type="audio/mpeg">
-    
+    <meta name="description" content="A beautiful anniversary slideshow of our favorite memories.">
+    <meta name="theme-color" content="#764ba2">
+    <meta name="color-scheme" content="light dark">
+    <meta property="og:title" content="Happy 2nd Anniversary 💖">
+    <meta property="og:description" content="Celebrating two wonderful years together">
+    <meta property="og:type" content="website">
+
     <style>
-        /* ============================================
-           PROFESSIONAL CSS ARCHITECTURE
-           Enterprise-grade styling with performance optimization
-           ============================================ */
-        
-        /* CSS RESET - Modern Normalize */
-        *,
-        *::before,
-        *::after {
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* ============================================
-           DESIGN TOKENS - Centralized Design System
-           ============================================ */
-        :root {
-            /* Color Palette */
-            --color-text-primary: #ffffff;
-            --color-text-secondary: rgba(255, 255, 255, 0.95);
-            --color-text-tertiary: rgba(255, 255, 255, 0.85);
-            
-            /* Background Colors */
-            --color-bg-card: rgba(255, 255, 255, 0.12);
-            --color-bg-card-hover: rgba(255, 255, 255, 0.18);
-            --color-bg-hero: linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.08) 100%);
-            --color-bg-final: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.15) 100%);
-            
-            /* Border Colors */
-            --color-border-card: rgba(255, 255, 255, 0.25);
-            --color-border-card-hover: rgba(255, 255, 255, 0.35);
-            
-            /* Elevation System - Shadows */
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
-            --shadow-md: 0 10px 40px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 15px 60px rgba(0, 0, 0, 0.2);
-            --shadow-xl: 0 20px 80px rgba(0, 0, 0, 0.3);
-            
-            /* Spacing Scale - 8px base */
-            --space-xs: 0.5rem;    /* 8px */
-            --space-sm: 1rem;      /* 16px */
-            --space-md: 1.5rem;    /* 24px */
-            --space-lg: 2rem;      /* 32px */
-            --space-xl: 3rem;      /* 48px */
-            --space-2xl: 4rem;     /* 64px */
-            --space-3xl: 5rem;     /* 80px */
-            
-            /* Border Radius Scale */
-            --radius-sm: 12px;
-            --radius-md: 20px;
-            --radius-lg: 28px;
-            
-            /* Timing Functions - Easing */
-            --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
-            --ease-out: cubic-bezier(0.0, 0, 0.2, 1);
-            --ease-in: cubic-bezier(0.4, 0, 1, 1);
-            --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            
-            /* Transition Durations */
-            --duration-fast: 150ms;
-            --duration-base: 300ms;
-            --duration-slow: 400ms;
-            --duration-slower: 600ms;
-            
-            /* Typography System */
-            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
-            --font-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, monospace;
-            
-            /* Font Sizes - Fluid Typography */
-            --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
-            --text-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
-            --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
-            --text-lg: clamp(1.125rem, 1rem + 0.625vw, 1.5rem);
-            --text-xl: clamp(1.5rem, 1.3rem + 1vw, 2rem);
-            --text-2xl: clamp(2rem, 1.7rem + 1.5vw, 3rem);
-            --text-3xl: clamp(2.5rem, 2rem + 2.5vw, 4rem);
-            --text-4xl: clamp(3rem, 2.5rem + 2.5vw, 5rem);
-            --text-5xl: clamp(3.5rem, 3rem + 2.5vw, 6rem);
-            
-            /* Line Heights */
-            --leading-tight: 1.2;
-            --leading-snug: 1.375;
-            --leading-normal: 1.5;
-            --leading-relaxed: 1.625;
-            --leading-loose: 2;
-            
-            /* Z-index Layers */
-            --z-background: 0;
-            --z-hearts: 1;
-            --z-content: 10;
-            --z-controls: 100;
-            --z-modal: 1000;
-        }
-
-        /* ============================================
-           BASE ELEMENTS - Foundation
-           ============================================ */
-        html {
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            text-rendering: optimizeLegibility;
-            scroll-behavior: smooth;
-            font-size: 16px;
-            height: 100%;
-        }
-
         body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            min-height: 100dvh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            background-size: 400% 400%;
-            background-attachment: fixed;
-            animation: gradientShift 20s ease infinite;
-            font-family: var(--font-sans);
-            color: var(--color-text-primary);
-            overflow-x: hidden;
-            position: relative;
-            line-height: var(--leading-normal);
-        }
-
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        /* ============================================
-           LAYOUT SYSTEM
-           ============================================ */
-        .container {
-            position: relative;
-            width: 100%;
-            min-height: 100vh;
-            min-height: 100dvh;
             overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: var(--space-lg) var(--space-sm);
-            z-index: var(--z-content);
-        }
-
-        .content-wrapper {
             position: relative;
-            width: 100%;
-            max-width: 850px;
-            /* Fixed: Changed animation duration to match JavaScript configuration */
-            animation: scrollUp 120s linear forwards;
-            will-change: transform, opacity;
-            contain: layout style paint;
         }
 
-        @keyframes scrollUp {
-            0% {
-                transform: translateY(100vh);
-                opacity: 0;
-            }
-            2% {
-                opacity: 1;
-            }
-            98% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100vh);
-                opacity: 0;
-            }
-        }
-
-        /* ============================================
-           CARD COMPONENT SYSTEM
-           ============================================ */
-        .message-card {
-            margin: var(--space-xl) auto;
-            background: var(--color-bg-card);
-            backdrop-filter: blur(25px) saturate(180%);
-            -webkit-backdrop-filter: blur(25px) saturate(180%);
-            border: 1px solid var(--color-border-card);
-            border-radius: var(--radius-lg);
-            padding: var(--space-lg);
-            box-shadow: var(--shadow-md);
-            animation: fadeInScale 0.8s var(--ease-out) both;
-            transition: 
-                transform var(--duration-slow) var(--ease-out), 
-                box-shadow var(--duration-slow) var(--ease-out),
-                border-color var(--duration-base) var(--ease-out);
-            contain: layout style paint;
-        }
-
-        .message-card:hover {
-            transform: translateY(-8px) scale(1.01);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--color-border-card-hover);
-        }
-
-        /* Touch Device Optimization */
-        @media (hover: none) and (pointer: coarse) {
-            .message-card:active {
-                transform: translateY(-4px) scale(0.99);
-                transition-duration: var(--duration-fast);
-            }
-        }
-
-        @keyframes fadeInScale {
-            from {
-                opacity: 0;
-                transform: scale(0.96) translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
-        }
-
-        /* Image Optimization - Fixed: Changed back to cover for better image display */
-        .message-card img {
-            width: 100%;
-            height: auto;
-            object-fit: cover; /* Changed back from contain to cover */
-            border-radius: var(--radius-md);
-            margin-bottom: var(--space-md);
-            box-shadow: var(--shadow-lg);
-            transition: transform var(--duration-slow) var(--ease-out);
-            will-change: transform;
-            image-rendering: -webkit-optimize-contrast;
-            image-rendering: crisp-edges;
-            background: linear-gradient(90deg, 
-                rgba(255, 255, 255, 0.05) 0%, 
-                rgba(255, 255, 255, 0.1) 50%, 
-                rgba(255, 255, 255, 0.05) 100%);
-        }
-
-        .message-card:hover img {
-            transform: scale(1.03);
-        }
-
-        /* Loading State for Images */
-        .message-card img[loading="lazy"]:not(.loaded) {
-            background-size: 200% 100%;
-            animation: shimmer 1.5s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-        }
-
-        /* ============================================
-           TYPOGRAPHY SYSTEM
-           ============================================ */
-        h1 {
-            font-family: var(--font-serif);
-            font-size: var(--text-3xl);
-            font-weight: 700;
-            margin-bottom: var(--space-sm);
-            line-height: var(--leading-tight);
-            background: linear-gradient(135deg, #ffffff 0%, #ffd1dc 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 2px 20px rgba(255, 255, 255, 0.3);
-            letter-spacing: -0.02em;
-        }
-
-        h2 {
-            font-family: var(--font-serif);
-            font-size: var(--text-xl);
-            font-weight: 600;
-            margin-bottom: var(--space-sm);
-            line-height: var(--leading-snug);
-            color: var(--color-text-primary);
-            letter-spacing: -0.01em;
-        }
-
-        p {
-            font-size: var(--text-base);
-            line-height: var(--leading-relaxed);
-            color: var(--color-text-secondary);
-            font-weight: 300;
-            letter-spacing: 0.01em;
-            max-width: 65ch;
-        }
-
-        /* ============================================
-           SPECIAL CARD VARIANTS
-           ============================================ */
-        .hero-card {
-            text-align: center;
-            padding: var(--space-2xl) var(--space-lg);
-            background: var(--color-bg-hero);
-            border: 2px solid var(--color-border-card);
-        }
-
-        .hero-card h1 {
-            font-size: var(--text-4xl);
-            margin-bottom: var(--space-md);
-            font-weight: 900;
-            letter-spacing: -0.03em;
-        }
-
-        .divider {
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, transparent, var(--color-text-primary), transparent);
-            margin: var(--space-lg) auto;
-            border-radius: 2px;
-            opacity: 0.8;
-        }
-
-        .final-card {
-            text-align: center;
-            padding: var(--space-3xl) var(--space-xl);
-            background: var(--color-bg-final);
-            border: 2px solid rgba(255, 255, 255, 0.4);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .final-card h1 {
-            font-size: var(--text-5xl);
-            font-weight: 900;
-            margin-bottom: var(--space-lg);
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            background: linear-gradient(135deg, #ffffff 0%, #ffb3d9 50%, #ff6b9d 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: textGlow 3s ease-in-out infinite;
-            will-change: filter;
-        }
-
-        @keyframes textGlow {
-            0%, 100% {
-                filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.5));
-            }
-            50% {
-                filter: drop-shadow(0 0 40px rgba(255, 255, 255, 0.8)) 
-                        drop-shadow(0 0 60px rgba(255, 107, 157, 0.4));
-            }
-        }
-
-        .final-card p {
-            font-size: var(--text-lg);
-            line-height: var(--leading-loose);
-            font-weight: 400;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        /* ============================================
-           FLOATING HEARTS ANIMATION
-           ============================================ */
-        .hearts {
+        /* Floating hearts animation */
+        .hearts-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: var(--z-hearts);
+            z-index: 1;
             overflow: hidden;
         }
 
         .heart {
             position: absolute;
-            font-size: 2rem;
-            animation: floatUp 10s ease-in infinite;
+            font-size: 20px;
+            animation: float 8s infinite ease-in-out;
             opacity: 0;
-            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
-            will-change: transform, opacity;
         }
 
-        @keyframes floatUp {
+        @keyframes float {
             0% {
-                transform: translateY(100vh) rotate(0deg) scale(0.8);
+                transform: translateY(100vh) rotate(0deg);
                 opacity: 0;
             }
             10% {
-                opacity: 0.7;
+                opacity: 0.8;
             }
             90% {
-                opacity: 0.7;
+                opacity: 0.8;
             }
             100% {
-                transform: translateY(-100vh) rotate(360deg) scale(1.2);
+                transform: translateY(-100px) rotate(360deg);
                 opacity: 0;
             }
         }
 
-        .heart:nth-child(1) { left: 10%; animation-delay: 0s; }
-        .heart:nth-child(2) { left: 25%; animation-delay: 2.5s; }
-        .heart:nth-child(3) { left: 40%; animation-delay: 5s; }
-        .heart:nth-child(4) { left: 55%; animation-delay: 1.5s; }
-        .heart:nth-child(5) { left: 70%; animation-delay: 4s; }
-        .heart:nth-child(6) { left: 85%; animation-delay: 6s; }
+        /* Main container */
+        .container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
 
-        /* ============================================
-           RESPONSIVE DESIGN - Mobile First
-           ============================================ */
+        /* Welcome screen */
+        .welcome-screen {
+            text-align: center;
+            color: white;
+            animation: fadeIn 2s ease-in;
+            max-width: 90%;
+        }
+
+        .welcome-screen h1 {
+            font-size: clamp(2rem, 8vw, 4rem);
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+            line-height: 1.2;
+        }
+
+        .welcome-screen p {
+            font-size: clamp(1rem, 4vw, 1.5rem);
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+            margin-top: 15px;
+        }
+
+        /* Slideshow container */
+        .slideshow-container {
+            display: none;
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .slideshow-container.active {
+            display: flex;
+        }
+
+        .photo-counter {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: clamp(0.875rem, 2vw, 1rem);
+            font-weight: bold;
+            color: #764ba2;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+
+        .photo-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .photo {
+            position: absolute;
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            transform-origin: center;
+        }
+
+        .photo.active {
+            opacity: 1;
+        }
+
+        /* Final message */
+        .final-message {
+            display: none;
+            text-align: center;
+            color: white;
+            max-width: 90%;
+            padding: 20px;
+        }
+
+        .final-message.active {
+            display: block;
+            animation: popInSlow 2.5s ease-out both;
+        }
+
+        .final-message h2 {
+            font-size: clamp(1.75rem, 6vw, 3rem);
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+            line-height: 1.3;
+        }
+
+        .final-message p {
+            font-size: clamp(1rem, 4vw, 1.5rem);
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+            line-height: 1.6;
+            margin-top: 15px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        /* Extra slideshow effects */
+        @keyframes zoomIn {
+            from { transform: scale(1.06); opacity: 0; }
+            to   { transform: scale(1); opacity: 1; }
+        }
+        @keyframes zoomOut {
+            from { transform: scale(0.94); opacity: 0; }
+            to   { transform: scale(1); opacity: 1; }
+        }
+        @keyframes slideUpIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to   { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes slideRightIn {
+            from { transform: translateX(20px); opacity: 0; }
+            to   { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes kenBurns {
+            0%   { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.08) translate(2%, -2%); }
+        }
+
+        .photo.effect-zoom-in.active { animation: zoomIn 1.1s ease both; }
+        .photo.effect-zoom-out.active { animation: zoomOut 1.1s ease both; }
+        .photo.effect-slide-up.active { animation: slideUpIn 1s ease-out both; }
+        .photo.effect-slide-right.active { animation: slideRightIn 1s ease-out both; }
+        .photo.effect-kenburns.active { animation: zoomIn 0.8s ease both, kenBurns var(--kenburns-duration, 3500ms) ease-in-out both; }
+
+        /* Final message slow pop */
+        @keyframes popInSlow {
+            0%   { opacity: 0; transform: scale(0.92) translateY(10px); filter: blur(4px); }
+            60%  { opacity: 1; transform: scale(1.02) translateY(0); filter: blur(0); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+
+
+        /* Loading indicator */
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Responsive adjustments */
         @media (max-width: 768px) {
-            :root {
-                --space-lg: 1.5rem;
-                --space-xl: 2rem;
-                --space-2xl: 2.5rem;
-                --space-3xl: 3rem;
+            .photo-counter {
+                top: 10px;
+                right: 10px;
+                padding: 8px 15px;
             }
 
-            .container {
-                padding: var(--space-md) var(--space-sm);
-            }
-
-            .message-card {
-                padding: var(--space-md);
-                margin: var(--space-lg) auto;
-                border-radius: var(--radius-md);
-            }
-
-            .hero-card,
-            .final-card {
-                padding: var(--space-xl) var(--space-md);
-            }
-
-            .final-card {
-                padding: var(--space-2xl) var(--space-lg);
+            .photo-wrapper {
+                height: 60vh;
             }
 
             .heart {
-                font-size: 1.5rem;
+                font-size: 16px;
             }
         }
 
         @media (max-width: 480px) {
-            .message-card img {
-                max-height: none; /* Removed max-height constraint */
+            .container {
+                padding: 15px;
+            }
+
+            .photo-wrapper {
+                height: 50vh;
+            }
+
+            .photo {
+                border-radius: 10px;
+            }
+
+            .photo-counter {
+                padding: 6px 12px;
             }
         }
 
-        /* ============================================
-           ACCESSIBILITY & PERFORMANCE
-           ============================================ */
-        
-        /* Reduced Motion Support */
-        @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
+        /* Landscape mobile optimization */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .photo-wrapper {
+                height: 80vh;
+            }
+
+            .welcome-screen h1 {
+                margin-bottom: 10px;
+            }
+
+            .photo-counter {
+                top: 5px;
+                right: 5px;
+                padding: 5px 10px;
             }
         }
 
-        /* High Contrast Mode */
-        @media (prefers-contrast: high) {
-            .message-card {
-                border: 2px solid var(--color-text-primary);
-            }
-        }
-
-        /* Dark Mode Adjustments */
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --color-bg-card: rgba(255, 255, 255, 0.15);
-            }
-        }
-
-        /* Print Styles */
-        @media print {
-            .hearts {
-                display: none !important;
-            }
-            
-            .message-card {
-                page-break-inside: avoid;
-                break-inside: avoid;
-            }
-            
-            body {
-                background: white;
-                color: black;
-            }
-        }
-
-        /* Screen Reader Only Content */
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border-width: 0;
-        }
     </style>
 </head>
 <body>
-    <!-- Audio element with autoplay and loop -->
-    <audio id="anniversary-audio" autoplay loop preload="auto" aria-label="Background music">
+    <!-- Floating hearts -->
+    <div class="hearts-container" id="heartsContainer" aria-hidden="true"></div>
+
+    <!-- Background music -->
+    <audio id="bgMusic" preload="auto" loop playsinline>
         <source src="music/labyrinth.mp3" type="audio/mpeg">
-        <p class="sr-only">Your browser does not support the audio element.</p>
     </audio>
 
-    <!-- Floating Hearts Background -->
-    <div class="hearts" aria-hidden="true">
-        <div class="heart">💖</div>
-        <div class="heart">💕</div>
-        <div class="heart">💗</div>
-        <div class="heart">💝</div>
-        <div class="heart">💞</div>
-        <div class="heart">💓</div>
+    <!-- Main container -->
+    <div class="container">
+        <!-- Welcome screen -->
+        <div class="welcome-screen" id="welcomeScreen" role="region" aria-label="Welcome">
+            <h1>Happy 2nd Anniversary, My Love 💖</h1>
+            <p>Celebrating two wonderful years together</p>
+        </div>
+
+        <!-- Slideshow -->
+        <div class="slideshow-container" id="slideshowContainer" role="region" aria-label="Photo slideshow">
+            <div class="photo-counter" id="photoCounter"></div>
+            <div class="photo-wrapper">
+                <img class="photo active" id="currentPhoto" src="pictures/2.jpg" alt="Memory 1" loading="eager" decoding="async" fetchpriority="high">
+            </div>
+        </div>
+
+        <!-- Final message -->
+        <div class="final-message" id="finalMessage" role="region" aria-live="polite">
+            <h2>Thank you for two wonderful years</h2>
+            <p>Every moment with you is a treasure.<br>I love you forever 💕</p>
+        </div>
     </div>
 
-    <main class="container">
-        <div class="content-wrapper" id="content-wrapper">
-            <!-- Hero Section -->
-            <article class="message-card hero-card">
-                <h1>Happy 2nd Anniversary!</h1>
-                <div class="divider" aria-hidden="true"></div>
-                <p>Celebrating two beautiful years of love, laughter, and endless memories together.</p>
-            </article>
-
-            <!-- Memory Cards (1-56) - CAPTIONS REMOVED -->
-            <article class="message-card">
-                <img src="pictures/2.jpg" alt="Our first cherished moment together" loading="eager">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/29.jpg" alt="A special memory" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/6.jpg" alt="Your beautiful smile" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/17.jpg" alt="Joyful moments together" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/7.jpg" alt="Walking hand in hand" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/37.jpg" alt="Intimate moments" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/1.jpg" alt="Stargazing together" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/13.jpg" alt="Dancing together" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/35.jpg" alt="Together facing the world" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/51.jpg" alt="Watching the sunrise" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/24.jpg" alt="Cozy moments" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/28.jpg" alt="Adventures together" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/25.jpg" alt="Cooking together" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/27.jpg" alt="Beautiful sunset" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/14.jpg" alt="Morning coffee" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/50.jpg" alt="Celebrating milestones" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/31.jpg" alt="Dancing in the rain" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/52.jpg" alt="Movie night" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/15.jpg" alt="Road trip" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/34.jpg" alt="Winter wonderland" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/53.jpg" alt="Spring blossoms" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/54.jpg" alt="Summer picnic" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/23.jpg" alt="Autumn leaves" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/22.jpg" alt="Our first date" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/43.jpg" alt="The first kiss" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/44.jpg" alt="Holding hands" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/11.jpg" alt="Loving gazes" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/12.jpg" alt="Thoughtful surprises" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/40.jpg" alt="Supporting each other" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/4.jpg" alt="Lazy Sunday morning" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/41.jpg" alt="Concert memories" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/42.jpg" alt="Art and culture" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/46.jpg" alt="Game night" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/33.jpg" alt="Our growing family" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/32.jpg" alt="Creating our home" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/26.jpg" alt="Celebrating love" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/18.jpg" alt="Dancing at parties" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/3.jpg" alt="Comfortable silence" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/56.jpg" alt="Working out together" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/8.jpg" alt="Trying new foods" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/20.jpg" alt="Farmer's market" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/10.jpg" alt="Baking together" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/5.jpg" alt="Bookstore browsing" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/16.jpg" alt="Coffee shop dates" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/19.jpg" alt="Starlit conversations" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/9.jpg" alt="Amusement park" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/38.jpg" alt="Zoo adventures" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/45.jpg" alt="Aquarium visit" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/39.jpg" alt="Garden strolls" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/49.jpg" alt="Lakeside serenity" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/47.jpg" alt="Camping under stars" loading="lazy">
-            </article>
-
-            <article class="message-card">
-                <img src="pictures/36.jpg" alt="Bonfire nights" loading="lazy">
-            </article>
-
-            <!-- Final Message -->
-            <article class="message-card final-card">
-                <h1>FOREVER YOURS 💞</h1>
-                <div class="divider" aria-hidden="true"></div>
-                <p>Happy Anniversary, my love. These memories are just a fraction of the countless moments we've shared. Every day with you adds another beautiful chapter to our story. Thank you for your love, your patience, your laughter, and your unwavering support. You are my greatest blessing, my best friend, and the love of my life. Here's to the memories we've made and the countless more we'll create together. I choose you today, tomorrow, and always. I love you more than words can express.</p>
-            </article>
-        </div>
-    </main>
-
     <script>
-        /**
-         * Anniversary Page - Simplified JavaScript Implementation
-         * Auto-playing music with continuous animation
-         * @version 5.0.0
-         */
-        
-        (function() {
-            'use strict';
-            
-            // ============================================
-            // CONSTANTS & CONFIGURATION
-            // ============================================
-            const CONFIG = {
-                // Fixed: Changed to 120000ms to match the CSS animation duration (120s)
-                ANIMATION_DURATION: 120000, // 120 seconds
-                ANIMATION_RESTART_DELAY: 5000, // 5 seconds pause before restart
-                INTERSECTION_THRESHOLD: 0.01,
-                INTERSECTION_ROOT_MARGIN: '50px 0px'
-            };
-            
-            // ============================================
-            // DOM ELEMENT REFERENCES
-            // ============================================
-            const elements = {
-                contentWrapper: document.getElementById('content-wrapper'),
-                messageCards: document.querySelectorAll('.message-card'),
-                lazyImages: document.querySelectorAll('img[loading="lazy"]'),
-                audio: document.getElementById('anniversary-audio')
-            };
-            
-            // ============================================
-            // STATE MANAGEMENT
-            // ============================================
-            const state = {
-                audioInitialized: false
-            };
-            
-            // ============================================
-            // AUDIO MANAGEMENT
-            // ============================================
-            
-            /**
-             * Initialize audio with autoplay and loop
-             */
-            const initializeAudio = () => {
-                // Set audio to loop
-                elements.audio.loop = true;
-                
-                // Try to play audio when page loads
-                const playAudio = () => {
-                    elements.audio.play().catch(error => {
-                        console.warn('[v0] Audio autoplay failed:', error);
-                        
-                        // If autoplay fails, try to play on first user interaction
-                        document.addEventListener('click', enableAudioOnInteraction, { once: true });
-                        document.addEventListener('touchstart', enableAudioOnInteraction, { once: true });
-                    });
-                };
-                
-                // Try to play audio
-                playAudio();
-                
-                // Set up audio event listeners
-                elements.audio.addEventListener('play', () => {
-                    state.audioInitialized = true;
-                });
-                
-                elements.audio.addEventListener('error', (e) => {
-                    console.error('[v0] Audio error:', e);
-                });
-            };
-            
-            /**
-             * Enable audio playback after user interaction
-             */
-            const enableAudioOnInteraction = () => {
-                if (!state.audioInitialized) {
-                    elements.audio.play().catch(error => {
-                        console.warn('[v0] Audio play failed after user interaction:', error);
-                    });
-                }
-            };
-            
-            // ============================================
-            // ANIMATION MANAGEMENT
-            // ============================================
-            
-            /**
-             * Restart animation smoothly
-             */
-            const restartAnimation = () => {
-                setTimeout(() => {
-                    elements.contentWrapper.style.animation = 'none';
-                    requestAnimationFrame(() => {
-                        requestAnimationFrame(() => {
-                            // Fixed: Use the same duration as defined in CONFIG
-                            elements.contentWrapper.style.animation = `scrollUp ${CONFIG.ANIMATION_DURATION}ms linear forwards`;
-                        });
-                    });
-                }, CONFIG.ANIMATION_RESTART_DELAY);
-            };
-            
-            // ============================================
-            // INTERSECTION OBSERVER - Lazy Loading
-            // ============================================
-            
-            /**
-             * Initialize Intersection Observer for lazy loading
-             */
-            const initializeIntersectionObserver = () => {
-                if (!('IntersectionObserver' in window)) {
-                    console.warn('[v0] IntersectionObserver not supported');
-                    return;
-                }
-                
-                const imageObserver = new IntersectionObserver((entries, observer) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const img = entry.target;
-                            img.classList.add('loaded');
-                            observer.unobserve(img);
-                        }
-                    });
-                }, {
-                    rootMargin: CONFIG.INTERSECTION_ROOT_MARGIN,
-                    threshold: CONFIG.INTERSECTION_THRESHOLD
-                });
-                
-                elements.lazyImages.forEach(img => imageObserver.observe(img));
-            };
-            
-            // ============================================
-            // EVENT LISTENERS
-            // ============================================
-            
-            /**
-             * Setup all event listeners
-             */
-            const setupEventListeners = () => {
-                // Animation restart
-                elements.contentWrapper.addEventListener('animationend', restartAnimation);
-            };
-            
-            // ============================================
-            // INITIALIZATION
-            // ============================================
-            
-            /**
-             * Initialize the application
-             */
-            const init = () => {
-                console.log('[v0] Initializing Anniversary Page...');
-                
-                // Setup event listeners
-                setupEventListeners();
-                
-                // Initialize audio
-                initializeAudio();
-                
-                // Initialize lazy loading
-                initializeIntersectionObserver();
-                
-                console.log('[v0] Anniversary Page initialized successfully');
-            };
-            
-            // Run initialization when DOM is ready
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', init);
-            } else {
-                init();
+        // Configuration
+        const WELCOME_DURATION = 4000; // 4 seconds
+        const PHOTO_DURATION = 3500; // 3.5 seconds per photo
+        const MUSIC_START_TIME = 13; // Start music at 13 seconds (skip 0–12s)
+
+        // Photo paths in order (limited to existing images for reliability)
+        const photos = [
+            { src: 'pictures/2.jpg', alt: 'Memory 1' },
+            { src: 'pictures/29.jpg', alt: 'Memory 2' },
+            { src: 'pictures/6.jpg', alt: 'Memory 3' },
+            { src: 'pictures/17.jpg', alt: 'Memory 4' },
+            { src: 'pictures/7.jpg', alt: 'Memory 5' },
+            { src: 'pictures/37.jpg', alt: 'Memory 6' },
+            { src: 'pictures/1.jpg', alt: 'Memory 7' },
+            { src: 'pictures/13.jpg', alt: 'Memory 8' },
+            { src: 'pictures/35.jpg', alt: 'Memory 9' },
+            { src: 'pictures/51.jpg', alt: 'Memory 10' },
+            { src: 'pictures/24.jpg', alt: 'Memory 11' },
+            { src: 'pictures/28.jpg', alt: 'Memory 12' },
+            { src: 'pictures/25.jpg', alt: 'Memory 13' },
+            { src: 'pictures/27.jpg', alt: 'Memory 14' },
+            { src: 'pictures/14.jpg', alt: 'Memory 15' },
+            { src: 'pictures/50.jpg', alt: 'Memory 16' },
+            { src: 'pictures/31.jpg', alt: 'Memory 17' },
+            { src: 'pictures/52.jpg', alt: 'Memory 18' },
+            { src: 'pictures/15.jpg', alt: 'Memory 19' },
+            { src: 'pictures/34.jpg', alt: 'Memory 20' },
+            { src: 'pictures/53.jpg', alt: 'Memory 21' },
+            { src: 'pictures/54.jpg', alt: 'Memory 22' },
+            { src: 'pictures/23.jpg', alt: 'Memory 23' },
+            { src: 'pictures/22.jpg', alt: 'Memory 24' },
+
+
+
+            { src: 'pictures/43.jpg', alt: 'Memory 25' },
+            { src: 'pictures/44.jpg', alt: 'Memory 26' },
+            { src: 'pictures/11.jpg', alt: 'Memory 27' },
+            { src: 'pictures/12.jpg', alt: 'Memory 28' },
+            { src: 'pictures/40.jpg', alt: 'Memory 29' },
+            { src: 'pictures/4.jpg', alt: 'Memory 30' },
+            { src: 'pictures/41.jpg', alt: 'Memory 31' },
+            { src: 'pictures/42.jpg', alt: 'Memory 32' },
+            { src: 'pictures/46.jpg', alt: 'Memory 33' },
+            { src: 'pictures/33.jpg', alt: 'Memory 34' },
+            { src: 'pictures/32.jpg', alt: 'Memory 35' },
+            { src: 'pictures/26.jpg', alt: 'Memory 36' },
+            { src: 'pictures/18.jpg', alt: 'Memory 37' },
+            { src: 'pictures/3.jpg', alt: 'Memory 38' },
+            { src: 'pictures/56.jpg', alt: 'Memory 39' },
+            { src: 'pictures/8.jpg', alt: 'Memory 40' },
+            { src: 'pictures/20.jpg', alt: 'Memory 41' },
+            { src: 'pictures/10.jpg', alt: 'Memory 42' },
+            { src: 'pictures/5.jpg', alt: 'Memory 43' },
+            { src: 'pictures/16.jpg', alt: 'Memory 44' },
+            { src: 'pictures/19.jpg', alt: 'Memory 45' },
+            { src: 'pictures/9.jpg', alt: 'Memory 46' },
+            { src: 'pictures/38.jpg', alt: 'Memory 47' },
+            { src: 'pictures/45.jpg', alt: 'Memory 48' },
+            { src: 'pictures/39.jpg', alt: 'Memory 49' },
+            { src: 'pictures/49.jpg', alt: 'Memory 50' },
+            { src: 'pictures/47.jpg', alt: 'Memory 51' },
+            { src: 'pictures/36.jpg', alt: 'Memory 52' }
+        ];
+
+        let currentPhotoIndex = 0;
+        const bgMusic = document.getElementById('bgMusic');
+        const welcomeScreen = document.getElementById('welcomeScreen');
+        const slideshowContainer = document.getElementById('slideshowContainer');
+        const finalMessage = document.getElementById('finalMessage');
+        const photoCounter = document.getElementById('photoCounter');
+        const currentPhoto = document.getElementById('currentPhoto');
+
+        // Create floating hearts
+        function createHeart() {
+
+
+
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.textContent = '💖';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDelay = Math.random() * 5 + 's';
+            heart.style.animationDuration = (Math.random() * 3 + 6) + 's';
+            document.getElementById('heartsContainer').appendChild(heart);
+        }
+
+        // Initialize hearts
+        for (let i = 0; i < 15; i++) {
+            createHeart();
+        }
+
+        // Start music with 10-second skip
+        function startMusic() {
+            bgMusic.currentTime = MUSIC_START_TIME;
+            bgMusic.play().catch(() => {
+                // Autoplay blocked by browser; start on first user interaction.
+
+
+
+                document.body.addEventListener('click', () => {
+                    bgMusic.currentTime = MUSIC_START_TIME;
+                    bgMusic.play();
+                }, { once: true });
+            });
+        }
+
+        // Show next photo
+        // Show next photo (with preload and error-skip)
+        function showNextPhoto() {
+            if (currentPhotoIndex >= photos.length) {
+                setTimeout(showFinalMessage, PHOTO_DURATION);
+                return;
             }
-            
-        })();
+
+
+        // Transition effects
+        const effects = ['effect-zoom-in','effect-zoom-out','effect-slide-up','effect-slide-right','effect-kenburns'];
+        function applyEffect(el) {
+            el.classList.remove('effect-zoom-in','effect-zoom-out','effect-slide-up','effect-slide-right','effect-kenburns');
+            const effect = effects[Math.floor(Math.random() * effects.length)];
+            if (effect === 'effect-kenburns') {
+                el.style.setProperty('--kenburns-duration', `${PHOTO_DURATION}ms`);
+            }
+            el.classList.add(effect);
+        }
+
+            const { src, alt } = photos[currentPhotoIndex];
+            const preload = new Image();
+            preload.onload = () => {
+                currentPhoto.classList.remove('active');
+
+                setTimeout(() => {
+                    currentPhoto.src = src;
+                    currentPhoto.alt = alt;
+                    photoCounter.textContent = `Photo ${currentPhotoIndex + 1} of ${photos.length}`;
+                    applyEffect(currentPhoto);
+                    setTimeout(() => currentPhoto.classList.add('active'), 50);
+                }, 100);
+
+                currentPhotoIndex++;
+                setTimeout(showNextPhoto, PHOTO_DURATION);
+            };
+            preload.onerror = () => {
+                // Skip missing/broken image
+                currentPhotoIndex++;
+                showNextPhoto();
+            };
+            preload.src = src;
+        }
+
+        // Show final message
+        function showFinalMessage() {
+            slideshowContainer.style.display = 'none';
+            finalMessage.classList.add('active');
+        }
+
+        // Start the experience
+        function startExperience() {
+            startMusic();
+
+            // Transition from welcome to slideshow
+            setTimeout(() => {
+                welcomeScreen.style.display = 'none';
+                slideshowContainer.classList.add('active');
+                showNextPhoto();
+            }, WELCOME_DURATION);
+        }
+
+        // Initialize when page loads
+        window.addEventListener('load', () => {
+            startExperience();
+        });
+
+        // Fallback for browsers that block autoplay
+        document.body.addEventListener('click', () => {
+            if (bgMusic.paused) {
+                bgMusic.currentTime = MUSIC_START_TIME;
+                bgMusic.play();
+            }
+        }, { once: true });
     </script>
 </body>
 </html>
